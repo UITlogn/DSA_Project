@@ -187,6 +187,7 @@ def hint():
             if check[i][j] == 2 and a[i][j] != 0:
                 cntsafe = 0    
                 cntinside = 0
+                cntbom = 0
                 for k in range(8):
                     x = i + dx[k]
                     y = j + dy[k]
@@ -194,8 +195,12 @@ def hint():
                         cntinside += 1
                         if check[x][y] == 2:
                             cntsafe += 1
+                        if check[x][y] == 1:
+                            cntbom += 1
                 if cntsafe + a[i][j] == cntinside:
                     pygame.draw.rect(DISPLAYSURF, RED, ((x + 1)*50+1, (y - 1)*50+1, 49, 49), 3)
+                if cntbom == a[i][j]:
+                    pygame.draw.rect(DISPLAYSURF, BLUE, ((x + 1)*50+1, (y - 1)*50+1, 49, 49), 3)
 
 def reset():
     global time_start, firsttime
